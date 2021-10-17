@@ -36,9 +36,6 @@ class LotteryRobot:
         time.sleep(2)
         driver.close()
         self.SwitchWindow(driver, 1)
-        # windows = driver.window_handles
-        # 转换到最新打开的窗口
-        # driver.switch_to.window(windows[-1])
         self.UserId = driver.find_element_by_xpath(
             '//*[@class="user-name tc-black c-pointer"]').text
         print(self.UserId)
@@ -162,7 +159,4 @@ if __name__ == '__main__':
     driver = webdriver.Chrome(options=ch_options)
     driver.implicitly_wait(2)
     robot = LotteryRobot(driver)
-    # robot.getCurrentDynamicId(driver)
-    # robot.getCurrentDynamicId(driver)
-    # robot.getCardId(driver, 1)
     robot.ListenNewDynamic(driver)
