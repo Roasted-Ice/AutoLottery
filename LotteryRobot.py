@@ -15,7 +15,7 @@ headers = {
 ch_options = webdriver.ChromeOptions()
 ch_options.add_argument("start-maximized")
 ch_options.add_argument("enable-automation")
-# ch_options.add_argument("--headless")
+ch_options.add_argument("--headless")
 ch_options.add_argument("--no-sandbox")
 ch_options.add_argument("--disable-infobars")
 ch_options.add_argument("--disable-dev-shm-usage")
