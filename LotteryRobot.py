@@ -58,6 +58,8 @@ class LotteryRobot:
 
     def SwitchWindow(self, driver, i):
         windows = driver.window_handles
+        if i > len(windows):
+            return False
         driver.switch_to.window(windows[i-1])
 
     def TransDynamic(self, driver, dynamic_id):
@@ -122,7 +124,7 @@ class LotteryRobot:
         except:
             print('不是抽奖动态，进行跳过')
             pass
-
+        print(lottery_btn)
         if lottery_btn != '':
             input_ = driver.find_element_by_xpath(
                 '//*[@class="textarea"]').send_keys('冲冲冲')
@@ -131,7 +133,13 @@ class LotteryRobot:
             submit_button = driver.find_element_by_xpath(
                 '//*[@class="comm-submit f-right"]').click()
         time.sleep(1)
-        driver.close()
+        windows = driver.window_handles
+        n = len(windows)-1
+        while n > 0:
+            driver.close
+            driver.switch_to.window(windows[n])
+            n -= 1
+
         self.SwitchWindow(driver, 1)
 
     def ListenNewDynamic(self, driver):
@@ -159,4 +167,6 @@ if __name__ == '__main__':
     driver = webdriver.Chrome(options=ch_options)
     driver.implicitly_wait(2)
     robot = LotteryRobot(driver)
-    robot.ListenNewDynamic(driver)
+    # robot.ListenNewDynamic(driver)
+    test_url = '582556096875494486'
+    robot.TransDynamic(driver, test_url)
